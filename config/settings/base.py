@@ -14,7 +14,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'apps.users.apps.UsersConfig',
     "apps.products.apps.ProductsConfig",
+    'drf_spectacular'
 ]
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Your Project API',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
