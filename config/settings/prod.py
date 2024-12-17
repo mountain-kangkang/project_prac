@@ -1,21 +1,28 @@
+import os
+
 from config.settings.base import *
-from dotenv import dotenv_values
+from dotenv import dotenv_values, load_dotenv
+
+load_dotenv('../../envs/.env.local')
 
 ENV = dotenv_values('../../envs/.env.prod')
 
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-4mf%v393(ixqsc#!3f%@h0ycu#f4vcud&nq8d75it589n-_$3*"
+from django.core.management.utils import get_random_secret_key
+SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ENV['ALLOWED_HOSTS'].split(',')
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "HOST": os.getenv('POSTGRES_HOST'),
+        "NAME": os.getenv('POSTGRES_DBNAME'),
+        "USER": os.getenv('POSTGRES_USER'),
+        "PASSWORD": os.getenv('POSTGRES_PASSWORD'),
+        "PORT": os.getenv('POSTGRES_PORT'),
     }
 }
 
