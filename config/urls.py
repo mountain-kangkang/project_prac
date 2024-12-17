@@ -19,9 +19,6 @@ from django.contrib import admin
 from django.urls import path
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
-def hello(request):
-    return {'message': 'Hello, world..!'}
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     # YOUR PATTERNS
