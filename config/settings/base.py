@@ -14,7 +14,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'apps.users.apps.UsersConfig',
     "apps.products.apps.ProductsConfig",
-    'drf_spectacular'
+    'drf_spectacular',
+    "corsheaders",
 ]
 
 SPECTACULAR_SETTINGS = {
@@ -33,6 +34,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -94,3 +97,10 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://frontend-deploy.com",
+]
+
+CORS_ALLOW_CREDENTIALS: True
